@@ -1,0 +1,26 @@
+<div class="search btn-light border rounded w-100 p-3 mt-5 d-flex flex-row" role="button">
+  <span class="font-weight-bold text-uppercase col-2 pt-2 ml-5">Search by:</span>
+  <select class="form-control border col-3" [(ngModel)]="filterKey">
+    <option *ngFor="let key of filterKeys" [value]="[key]">{{key}}</option>
+  </select>
+  <input [(ngModel)]="phrase" class="filter-search border rounded col-5 mx-3" type="text" placeholder="Search...">
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th (click)="onColumnSelect('id')">#</th>
+      <th (click)="onColumnSelect('name')">Name</th>
+      <th (click)="onColumnSelect('superPower')">Superpower</th>
+      <th (click)="onColumnSelect('address')">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hero of heroes | filter:phrase:filterKey | sort:columnKey">
+      <td>{{hero.id}}</td>
+      <td>{{hero.name}}</td>
+      <td>{{hero.superPower}}</td>
+      <td>{{hero.address}}</td>
+    </tr>
+  </tbody>
+</table>
